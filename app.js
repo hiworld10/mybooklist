@@ -13,13 +13,13 @@ class UI {
     static displayBooks() {
         const StoredBooks = [
             {
-                title: 'Book One'
-                author: 'John Doe'
+                title: 'Book One',
+                author: 'John Doe',
                 isbn: '919182'
             },
             {
-                title: 'Book Two'
-                author: 'Jane Doe'
+                title: 'Book Two',
+                author: 'Jane Doe',
                 isbn: '019238'
             }
         ];
