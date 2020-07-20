@@ -76,10 +76,50 @@ class UI {
         document.querySelector('#author').value = '';
         document.querySelector('#isbn').value = '';
     }
-
 }
 
 // Store Class: for handling data storage
+class Store {
+    static getBooks() {
+        let books;
+
+        if (localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+
+        return books;
+    }
+
+    static addBook(book) {
+        // Get the books array.
+        const books = Store.getBooks();
+
+        // Push the new element to it.
+        books.push(book);
+
+        // Convert the books array into json.
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static removeBook(isbn) { // unique value
+        // Get the books array.
+        const books = Store.getBooks();
+
+        // Iterate through the array
+        books.forEach((book, index), => {
+            // If isbn values match, remove the element
+            if (book.isbn === isbn) {
+                books.splice(index, 1);
+            }
+        });
+
+        // Convert the books array into json.
+        localStorage.setItem('books', JSON. stringify(books));
+    }
+}
+
 // Event: for displaying books
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
 
