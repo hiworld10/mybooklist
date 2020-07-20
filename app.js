@@ -33,16 +33,16 @@ class UI {
 
     static addBookToList(book) {
         const list = document.querySelector('#book-list');
-
         const row = document.createElement('tr');
 
+        // The `` quotes are needed to append html content to the page
         row.innerHTML = `
             <td>${book.title}</td>
             <td>${book.author}</td>
             <td>${book.isbn}</td>
             <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
         `;
-
+        // Append the created row to the list
         list.appendChild(row);
     }
 }
