@@ -54,6 +54,23 @@ class UI {
         }
     }
 
+    static showAlert(message, className) {
+        // Create div element, asign class properties to it and append a text node.
+        const div = document.createElement('div');
+        div.className = `text-center font-weight-bold alert - alert-${className}`;
+        div.appendChild(document.createTextNode(message));
+
+        // These instructions allow the newly created div element to be inserted
+        // in the container and before the book form.
+        const container = document.querySelector('.container');
+        const form = document.querySelector('#book-form');
+        container.insertBefore(div, form);
+
+        // Set timeout for message for it to vanish automatically
+        setTimeout(() => document.querySelector('.alert').remove(), 5000);
+
+    }
+
     static clearFields() {
         document.querySelector('#title').value = '';
         document.querySelector('#author').value = '';
@@ -78,19 +95,30 @@ document
     const author = document.querySelector('#author').value;
     const isbn = document.querySelector('#isbn').value;
 
-    // Instantiate book
-    const book = new Book(title, author, isbn);
+    if (title === '' || author === '' || isbn === '') {
+        UI.showAlert('Please fill in all fields.', 'warning');
+    } else {
+        // Instantiate book
+        const book = new Book(title, author, isbn);
 
-    // Add book to list
-    UI.addBookToList(book);
+        // Add book to list
+        UI.addBookToList(book);
 
-    // Clear the form fields
-    UI.clearFields();
+        // Clear the form fields
+        UI.clearFields();
+
+        // Show success message
+        UI.showAlert('Book added', 'success');
+    }
 });
+
 // Event: remove a book
 document
 .querySelector('#book-list')
 .addEventListener('click', (e) => {
     // Delete book
     UI.deleteBook(e.target);
+
+    // Show success message
+    UI.showAlert('Book removed', 'success');
 })
