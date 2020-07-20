@@ -108,7 +108,7 @@ class Store {
         const books = Store.getBooks();
 
         // Iterate through the array
-        books.forEach((book, index), => {
+        books.forEach((book, index) => {
             // If isbn values match, remove the element
             if (book.isbn === isbn) {
                 books.splice(index, 1);
