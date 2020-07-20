@@ -131,6 +131,9 @@ document
         // Add book to list
         UI.addBookToList(book);
 
+        // Add book to store
+        Store.addBook(book);
+
         // Clear the form fields
         UI.clearFields();
 
@@ -143,8 +146,17 @@ document
 document
 .querySelector('#book-list')
 .addEventListener('click', (e) => {
-    // Delete book
+    // Delete book from list
     UI.deleteBook(e.target);
+
+    // Delete book from Store
+    //
+    // logic:
+    // e.target               => <a> (the delete button)
+    // parentElement          => <td>X</td>
+    // previousElementSibling => <td>{isbn}</td> (the previous element in the td list)
+    // textContent            => the isbn string inside the <td>
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
     // Show success message
     UI.showAlert('Book removed', 'success');
