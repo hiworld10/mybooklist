@@ -49,5 +49,5 @@ class UI {
 
 // Store Class: for handling data storage
 // Event: for displaying books
-// Event: dd a book
+// Event: add a book
 // Event: remove a book
